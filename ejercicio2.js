@@ -12,20 +12,21 @@ document.querySelector('#ingreso-user').onclick = function(){
     const edadUsuario = document.querySelector('#edad').value;
 
     const nuevoTitulo = document.querySelector('h1');
-    nuevoTitulo.textContent = "Bienvenido " + primerNombre + " " + apellidoUsuario;
+    nuevoTitulo.textContent = `Bienvenido ${primerNombre} ${apellidoUsuario}`;
 
     const nuevoNodo = document.querySelector('body');
     const nuevoTexto = document.createElement('h1');
     nuevoNodo.appendChild(nuevoTexto);
 
     if (edadUsuario===""){
-        nuevoTexto.textContent = primerNombre + " " + segundoNombre + " " + apellidoUsuario
+        nuevoTexto.textContent = `${primerNombre} ${segundoNombre} ${apellidoUsuario}`
         return false;
 
     }
     else {
-        nuevoTexto.textContent = primerNombre + " " + segundoNombre + " " + apellidoUsuario + ", " + edadUsuario + " años."
+        nuevoTexto.textContent = `${primerNombre} ${segundoNombre} ${apellidoUsuario}, ${edadUsuario} años`
         return false; 
     }
+
 
 }
