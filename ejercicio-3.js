@@ -47,10 +47,7 @@ document.querySelector("#crear-input").onclick = function(){
 
 document.querySelector("#sumar-tiempo-de-clases").onclick = function(){
     
-    calcularTiempo();
     
-
-    function calcularTiempo(){
         const inputsIndividuales = 3
 
         let cantidadInputs = document.querySelectorAll("input").length
@@ -59,19 +56,19 @@ document.querySelector("#sumar-tiempo-de-clases").onclick = function(){
 
         let horasTotales = 0
         for(let i=1; i <= cantidadInputs; i++){ 
-        let cantidadHoras = Number(document.getElementById(`horaClase${i}`).value)
+        let cantidadHoras = Number(document.querySelector(`#horaClase${i}`).value)
         horasTotales = horasTotales + cantidadHoras
          }
 
         let minutosTotales = 0
         for(let i=1; i <= cantidadInputs; i++){ 
-            let cantidadHoras = Number(document.getElementById(`minutoClase${i}`).value)
+            let cantidadHoras = Number(document.querySelector(`#minutoClase${i}`).value)
             minutosTotales = minutosTotales + cantidadHoras
         }
 
         let segundosTotales = 0
         for(let i=1; i <= cantidadInputs; i++){ 
-            let cantidadHoras = Number(document.getElementById(`segundoClase${i}`).value)
+            let cantidadHoras = Number(document.querySelector(`#segundoClase${i}`).value)
             segundosTotales = segundosTotales + cantidadHoras
         }
         
@@ -88,15 +85,22 @@ document.querySelector("#sumar-tiempo-de-clases").onclick = function(){
                 horasTotales = horasTotales + 1
             }
         }
+    
 
+
+    
         let nodoBody = document.querySelector("body")
         let textoFinal = document.createElement("strong")
         nodoBody.appendChild(textoFinal)
-        
+            
         textoFinal.textContent = `La cantidad de tiempo total de las clases es: ${horasTotales} horas, ${minutosTotales} minutos, ${segundosTotales} segundos`
-        document.querySelector("#sumar-tiempo-de-clases").disabled = true
         
-        }
-}
+        document.querySelector("#sumar-tiempo-de-clases").disabled = true
+
+    }          
+        
+    
+        
+
 
 
