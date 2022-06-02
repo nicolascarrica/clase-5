@@ -7,79 +7,89 @@
 // 4. obtener el número que más se repite y mostrarlo en un <em> pre-creado con el texto "El número más frecuente es..."
 
 
-
-let $numeros = document.querySelectorAll('li')
-let numeros = []
-for(let i=0; i<$numeros.length; i++){
-    numeros.push(Number($numeros[i].innerText));
+document.querySelector("#calcular").onclick = function(){
+    const numeros = obtenerArray();
+    mostrarResultado('mayor', obtenerMayorNumero(numeros));
+    mostrarResultado('menor', obtenerMenorNumero(numeros));
+    mostrarResultado('promedio', obtenerPromedio(numeros));
+    mostrarResultado('frecuente', obtenerMasFrecuente(numeros));
+  
+   document.querySelector("#calcular").disabled = true
 }
 
-
-document.querySelector("#calcular").onclick = function(){
-   obtenerMayorNumero();
-   obtenerMenorNumero();
-   obtenerPromedio();
-   obtenerMasFrecuente();
   
-    function obtenerMayorNumero(){
+
+
+    function  obtenerMayorNumero(numeros){
         let mayorNumero = numeros[0];
         for(let i=0; i<numeros.length; i++){
          if(numeros[i]>mayorNumero){
             mayorNumero=numeros[i];
             }
+          
         }
-        let mayor = document.querySelector("#mayor-numero");
-        mayor.textContent = mayor.textContent + mayorNumero;
+        return mayorNumero;  
     
     }
 
-    function obtenerMenorNumero(){
+    function obtenerMenorNumero(numeros){
         let menorNumero = numeros[0];
         for(let i=0; i<numeros.length; i++){
             if(numeros[i]<menorNumero){
                 menorNumero=numeros[i]
             }
+            
+            
         }
-        let menor = document.querySelector("#menor-numero");
-        menor.textContent = menor.textContent + menorNumero;
-    
+        
+        return menorNumero;
     }
 
-    function obtenerPromedio(){
+    function obtenerPromedio(numeros){
         let acumulador = 0;
         for(let i=0; i<numeros.length; i++){
             acumulador+=numeros[i];
         }
-        let promedio = acumulador/numeros.length;
+        return (acumulador/numeros.length).toFixed(2);
         
-        let media = document.querySelector("#promedio-numero");
-        media.textContent = media.textContent + promedio;
-
+        
         
     }
 
-    function obtenerMasFrecuente(){
+    function obtenerMasFrecuente(numeros){
         let numeroFrecuente = 0
-        let count = 0
-        let countActual = 0
+        let contador = 0
+        let contadorActual = 0
     
         for(let i=0; i<numeros.length; i++){
             for(let j=i+1; j<numeros.length; j++){
                 if(numeros[i] === numeros[j]){
-                    countActual ++
-                    if(countActual>count){
+                    contadorActual ++
+                    if(contadorActual>contador){
                         numeroFrecuente = numeros[i]
-                        count = countActual
+                        contador = contadorActual
                     }
                 }
             }
-            countActual = 0
+            contadorActual = 0
 
     }
-    let repetido = document.querySelector("#frecuente-numero");
-    repetido.textContent = repetido.textContent + numeroFrecuente;
+    return numeroFrecuente;
 }
 
-document.querySelector("#calcular").disabled = true
-}
+    function  mostrarResultado(tipo, valor) {
+    document.querySelector(`#${tipo}-numero`).textContent = valor;
+    }
 
+    function obtenerArray(){
+
+        let $array = document.querySelectorAll('li')
+        let array = []
+        for(let i=0; i<$array.length; i++){
+             array.push(Number($array[i].innerText));
+        }
+    
+        return array;
+        
+    }
+    
